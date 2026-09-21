@@ -1,0 +1,8 @@
+{
+  "mode": "offline injected transport",
+  "scenarios": {
+    "permission_403": "PASS",
+    "rate_limit_429_retry": "PASS",
+    "read_200": "PASS"
+  }
+}

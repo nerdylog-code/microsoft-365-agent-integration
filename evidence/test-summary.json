@@ -1,0 +1,11 @@
+{
+  "compileall": true,
+  "coverage_percent": 83.71,
+  "secrets_scan": "PASS",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "tests": 28
+  }
+}

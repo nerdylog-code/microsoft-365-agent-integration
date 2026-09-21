@@ -1,0 +1,249 @@
+{
+  "tools": [
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "Read a bounded synthetic calendar agenda for the configured identity.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "end_datetime": {
+            "description": "ISO-8601 end timestamp",
+            "type": "string"
+          },
+          "start_datetime": {
+            "description": "ISO-8601 start timestamp",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "IANA timezone for offset-free input",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "start_datetime",
+          "end_datetime"
+        ],
+        "type": "object"
+      },
+      "name": "calendar_agenda"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "Read synthetic inbox metadata for the configured identity.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "limit": {
+            "default": 20,
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "mail_list_inbox"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "Prepare a local draft preview; this tool never writes or sends mail.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "type": "string"
+          },
+          "cc": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "to": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "to",
+          "subject",
+          "body"
+        ],
+        "type": "object"
+      },
+      "name": "mail_prepare_draft"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "Read bounded history for an operator-registered synthetic channel alias.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "channel_ref": {
+            "type": "string"
+          },
+          "end_datetime": {
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "start_datetime": {
+            "type": "string"
+          },
+          "team_ref": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "team_ref",
+          "channel_ref",
+          "start_datetime",
+          "end_datetime"
+        ],
+        "type": "object"
+      },
+      "name": "teams_channel_history"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "Classify only explicit decision, task, plan, status, blocker, and question markers.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "channel_ref": {
+            "type": "string"
+          },
+          "end_datetime": {
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "start_datetime": {
+            "type": "string"
+          },
+          "team_ref": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "team_ref",
+          "channel_ref",
+          "start_datetime",
+          "end_datetime"
+        ],
+        "type": "object"
+      },
+      "name": "teams_channel_digest"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "List synthetic SharePoint metadata for an allowlisted logical folder.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "target": {
+            "enum": [
+              "demo-folder"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "sharepoint_list_folder"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "Read one bounded synthetic UTF-8 document by logical alias.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "alias_or_known_item": {
+            "enum": [
+              "demo-folder/report.md"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "alias_or_known_item"
+        ],
+        "type": "object"
+      },
+      "name": "sharepoint_read_document"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "description": "List synthetic flow metadata from a pinned development scope.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "powerplatform_list_flows"
+    }
+  ]
+}

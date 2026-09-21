@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Install
+        run: uv venv && uv pip install --python .venv/bin/python -e '.[dev]'
+      - name: Compile
+        run: uv run python -m compileall -q src tests scripts
+      - name: Ruff
+        run: uv run ruff check src tests scripts
+      - name: Tests and coverage
+        run: uv run pytest --cov=m365_agent_integration --cov-report=term-missing
+      - name: Bandit
+        run: uv run bandit -q -r src
+      - name: Dependency audit
+        run: uv run pip-audit
+      - name: Secrets scan
+        run: uv run python scripts/scan_secrets.py

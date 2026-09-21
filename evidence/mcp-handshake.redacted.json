@@ -1,0 +1,10 @@
+{
+  "capabilities": {
+    "tools": {}
+  },
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "sanitized-microsoft-365-integration",
+    "version": "0.1.0"
+  }
+}
