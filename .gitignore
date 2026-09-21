@@ -1,0 +1,36 @@
+# Secrets and private evidence
+.env
+.env.*
+!.env.example
+PRIVATE_INVENTORY.md
+private/
+evidence/coverage.json
+evidence/pytest.xml
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local runtime output
+*.log
+*.part
