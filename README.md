@@ -1,5 +1,10 @@
 # Microsoft 365 Agent Integration
 
+[![CI](https://github.com/nerdylog-code/microsoft-365-agent-integration/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/nerdylog-code/microsoft-365-agent-integration/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/nerdylog-code/microsoft-365-agent-integration)](LICENSE)
+
+> **Architecture boundary:** real enterprise integration pattern → sanitized clean-room public implementation → synthetic fixtures → reproducible tests. The public repository never contacts a Microsoft 365 tenant by default.
+
 ## Project
 
 Sanitized integration between an AI agent and Microsoft 365 services using MCP, Microsoft Graph, Microsoft Entra ID, and OAuth.
@@ -50,16 +55,9 @@ The public code does not claim that one permission grants access to every servic
 
 ## What the real implementation showed
 
-The private installation evidence inspected for this portfolio contained separate custom MCP servers for:
+The reference architecture separates custom MCP servers for mail, calendar, Teams channel reads, SharePoint reads, controlled draft/action paths, and a pinned Power Platform development scope. The public implementation preserves these boundaries as documentation and clean-room contracts; it does not publish private source, identifiers, credentials, or corporate payloads.
 
-- Outlook/mail read;
-- Calendar read;
-- Teams channel read;
-- SharePoint read;
-- controlled mail draft and SharePoint action paths;
-- Power Platform/Dataverse with a pinned development scope.
-
-The servers used MCP over stdio, Microsoft Graph, OAuth2 client credentials, fixed or operator-configured identities outside tool arguments, bounded pagination, host allowlisting, and sanitized audit records. The external backup contained source repositories and audit metadata, not Hermes conversation transcripts.
+The architecture uses MCP over stdio, Microsoft Graph, OAuth2 client credentials, fixed or operator-configured identities outside tool arguments, bounded pagination, host allowlisting, and sanitized audit records. These are design references, not claims that the public repository has access to a live tenant.
 
 ## MCP distinction
 
@@ -161,7 +159,7 @@ uv run pip-audit
 uv run python scripts/scan_secrets.py
 ```
 
-GitHub Actions runs the same categories. The workflow badge is intentionally omitted until the public repository has a successful remote run.
+GitHub Actions runs the same categories. The hosted workflow has a successful public run on the current baseline (`5b27184`): [CI run 35607900068](https://github.com/nerdylog-code/microsoft-365-agent-integration/actions/runs/35607900068). This verifies the clean-room test pipeline only; it does not verify authorization in a Microsoft tenant.
 
 ## Limitations
 
